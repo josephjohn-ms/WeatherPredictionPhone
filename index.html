@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +15,9 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-size: 100%;
+      background-size: cover;
       background-attachment: fixed;
+      background-repeat: no-repeat;
       font-family: 'Nanum Myeongjo', serif;
     }
 
@@ -26,7 +28,7 @@
       text-align: center;
       position: relative;
       display: flex;
-      flex-direction: column; /* Change to column for portrait mode */
+      flex-direction: column; 
       align-items: center;
     }
 
@@ -39,7 +41,7 @@
       display: block;
       cursor: pointer;
       font-size: 24px;
-      margin-bottom: 10px; /* Adjust margin for better spacing in portrait mode */
+      margin-bottom: 10px; 
       color: #ffffff;
     }
 
@@ -52,13 +54,13 @@
     #celsius {
       margin: 0;
       text-align: center;
-      font-size: 40px; /* Adjust font size for better visibility on smaller screens */
+      font-size: 40px; 
       color: #ffffff;
     }
 
     nav {
       display: flex;
-      justify-content: center; /* Center the navigation links */
+      justify-content: center; 
       background-color: #6ca9ea;
       padding: 10px;
       display: none;
@@ -76,20 +78,20 @@
       margin: 20px 0;
     }
 
-    #current-location {
-      font-size: 16px; /* Adjust font size for better readability */
-      margin-top: 10px;
-    }
-
+    #current-location,
     #place-name {
-      font-size: 16px; /* Adjust font size for better readability */
+      font-size: 16px; 
       margin-top: 10px;
     }
 
     @media only screen and (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
+      #dayCards {
+        flex-direction: row;
+      }
+
+      .day_cards {
+        flex: 1;
+        margin: 10px;
       }
     }
 
@@ -105,7 +107,7 @@
 
     .toggle-buttons {
       display: flex;
-      flex-direction: column; /* Adjust for better spacing in portrait mode */
+      flex-direction: column; 
     }
 
     .toggle-buttons button {
@@ -127,13 +129,13 @@
     .toggle-buttons button.active {
       background-color: #2ecc71;
       border-radius: 5px;
-      margin-right: 0; /* Adjust margin for better spacing */
+      margin-right: 0; 
     }
 
     #dayCards {
       display: flex;
-      flex-direction: column; /* Adjust layout for better stacking in portrait mode */
-      align-items: center; /* Center the cards */
+      flex-direction: row;
+      justify-content: center; 
     }
 
     .day_cards {
@@ -144,14 +146,15 @@
       border-radius: 8%;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       position: relative;
-      overflow: hidden; /* Add overflow to hide overflowing content */
+      overflow: hidden; 
+      flex: 1;
     }
 
     .day_cards img {
       width: 100%;
       height: auto;
       max-height: 100%;
-      margin-bottom: 10px; /* Adjust margin for better spacing */
+      margin-bottom: 10px;
       border-radius: 6%;
       opacity: 100%;
       padding: 0%;
@@ -201,7 +204,7 @@
     </div>
   </div>
   <div>
-    <h1 id="celsius"> 32°C</h1>
+    <h1 id="celsius">32°C</h1>
   </div>
 
   <!-- This div is for cards-->
@@ -238,12 +241,10 @@
 
   <script>
     function toggleWeather() {
-      // Implement any logic for displaying weather information
-      document.getElementById('celsius').innerHTML = '32°C'; // Example: Change this line with your weather data
+      document.getElementById('celsius').innerHTML = '32°C';
     }
 
     function toggleAQI() {
-      // Redirect to another page (you can replace 'aqi-page.html' with the actual page URL)
       window.location.href = 'aqi-page.html';
     }
 
@@ -259,10 +260,8 @@
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
 
-            // Call the function to get district name based on coordinates
             getDistrictName(latitude, longitude);
 
-            // Display the current location
             document.getElementById('userLocation').innerHTML = `Latitude: ${latitude}, Longitude: ${longitude}`;
           },
           function (error) {
@@ -289,7 +288,6 @@
     }
 
     function extractDistrict(address) {
-      // Extract district information from the address object
       if (address && address.county) {
         return address.county;
       } else if (address && address.state_district) {
